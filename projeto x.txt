@@ -1,0 +1,1 @@
+C:\Users\gustavo.oliveira\.vscode\extensions\ms-dotnettools.vscode-dotnet-pack-1.0.4
