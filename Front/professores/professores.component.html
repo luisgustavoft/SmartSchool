@@ -1,0 +1,76 @@
+<div class="row">
+
+  <div class="col-sm-6" *ngIf="professorSelecionado">
+    <app-titulo [titulo]="(professorSelecionado.id === undefined ? 'Novo Professor' : 'Cód. Professor: ' + professorSelecionado.id)">
+          <button class="btn btn-sm btn-outline-danger" (click)="voltar()">
+          Fechar
+        </button>
+        </app-titulo>
+    <form [formGroup]="professorForm" (submit)= "professorSubmit()">
+    <div class="form-group">
+      <label for="formGroupExampleInput">Nome</label>
+      <input type="text" formControlName="nome" class="form-control" title="nome">
+    </div>
+    <div class="form-group">
+      <label for="formGroupExampleInput2" >Disciplina</label>
+      <select class="form-select" aria-label="Default select example">
+      <option *ngFor="let disciplina of disciplinas" selected>{{disciplina.nome}}</option>
+     </select>
+    </div>
+    <div class="formgroup">
+      <hr>
+      <button class="btn btn-sm btn-primary" [disabled]="!professorForm.valid">Enviar</button>
+    </div>
+  </form>
+</div>
+
+<div [ngClass]="{'col-sm-6': professorSelecionado, 'col-sm-12': !professorSelecionado}">
+  <app-titulo [titulo]="titulo">
+    <button class="btn btn-sm btn-primary" (click)="professorNovo()">
+      Cadastrar Professor
+    </button>
+  </app-titulo>
+  <table class="table table-hover">
+    <thead class="thead-light">
+      <tr>
+        <th> Visualizar </th>
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Opções</th>
+
+        </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let prof of professores">
+        <td>
+          <button (click)="professorSelect(prof)" class="text-dark btn btn-sm btn-outline-warning">Detalhe</button></td>
+          <th scope="row">{{prof.id}}</th>
+          <td>{{prof.nome}}</td>
+         <!-- <td>
+            <div *ngFor="let disciplina of prof.disciplinas">
+              {{disciplina.nome}}
+            </div>
+          </td>-->
+          <td>
+           <div class="btn-group">
+              <button (click)="openModal(template)" class="btn btn-sm btn-outline-primary">alunos</button>
+              <button class="btn btn-sm btn-danger"
+              (click)="deletarProfessor(prof.id)">Deletar</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Modal</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+    </div>
+  </ng-template>
