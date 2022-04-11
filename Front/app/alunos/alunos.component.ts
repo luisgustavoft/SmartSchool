@@ -24,7 +24,7 @@ export class AlunosComponent implements OnInit {
  public disciplinas: Disciplina[];
  public alunosDisciplinas: AlunoDisciplina[];
  public disciplinaid: number;
-
+ 
  public alunos: Aluno[];
 
  openModal(template: TemplateRef<any>) {

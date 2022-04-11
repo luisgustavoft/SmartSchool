@@ -20,6 +20,7 @@ namespace SmartSchool_WebAPI.Models
         public int Id { get; set; }
         public string Nome { get; set; }
         public int ProfessorId { get; set; }
+
         [ForeignKey("AlunoId")]
         public Aluno Aluno { get; set; }
     }
